@@ -21,11 +21,11 @@ import UIKit
  */
 
 //放一个label显示回调信息
-var label:UILabel?;
+
 
 
 class ViewController: UIViewController {
-
+    var label:UILabel?;
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -54,9 +54,10 @@ class ViewController: UIViewController {
     @objc func nextBtnClicked() -> Void {
         
         let sVC:SecondViewController = SecondViewController();
+        weak var weakSelf = self;
         sVC.changeLabelText { (str) in
             
-            label?.text = str;
+            weakSelf?.label?.text = str;
             
         }
         self.navigationController?.pushViewController(sVC, animated:true);
